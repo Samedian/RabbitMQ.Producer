@@ -16,15 +16,8 @@ namespace RabbitMQ.Producer
             //amqp://username:password:host:port
             using var connection = factory.CreateConnection(); //return iconnection object
             using var channel = connection.CreateModel(); // return imodel nothing but channel
-            channel.QueueDeclare("demo-queue", durable: true, exclusive: false ,autoDelete:false,arguments:null);
-            // durable true - msg hang around until user reads it
-
-            var message = new { Name = "Producer", Message = "Hello! " };
-            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
-            // data pass in bytes
-
-            channel.BasicPublish("", "demo-queue", null, body);
-
+            //QueueProducer.Publish(channel); 
+            DirectExchangePublisher.Publish(channel);
 
         }
     }
