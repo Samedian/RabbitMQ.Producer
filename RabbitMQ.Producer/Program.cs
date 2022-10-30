@@ -17,7 +17,10 @@ namespace RabbitMQ.Producer
             using var connection = factory.CreateConnection(); //return iconnection object
             using var channel = connection.CreateModel(); // return imodel nothing but channel
             //QueueProducer.Publish(channel); 
-            DirectExchangePublisher.Publish(channel);
+            //DirectExchangePublisher.Publish(channel);
+            //TopicExchangePublisher.Publish(channel);
+            //HeaderExchangePublisher.Publish(channel);
+            FanoutExchangePublisher.Publish(channel);
 
         }
     }
